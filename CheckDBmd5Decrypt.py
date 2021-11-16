@@ -30,7 +30,7 @@ def md5decrypt(hash, email, code):
         if "ERROR" in response.text:
             return ERROR(response.text)
         elif response.text == "":
-            return "Hash no encontrada"
+            return "Hash no encontrada : {}".format(hash)
         else:
             return "Hash encontrada: {}:{} ".format(hash, response.text)
 
@@ -62,23 +62,29 @@ if __name__ == '__main__':
         
         Opciones:
          hash: hash a buscar
-         file: archivo con hashes
+         -f file: archivo con hashes
          email: email de la cuenta premium
          code: código de la cuenta premium
         
         Ejemplo: python3 CheckDBmd5Decrypt.py e10adc3949ba59abbe56e057f20f883e corre@dominio.com 123456
         """)
-        
-        
-    # print(len(sys.argv))
-    # hash = sys.argv[1]
-    # email = sys.argv[2]
-    # code = sys.argv[3]
-    #
-    # print(sys.argv[1], sys.argv[2], sys.argv[3])
-    # hash = "835ac0b7b5436c89b9813729148632e7"
-    # email = "cuentasdetodo0101@yopmail.com"
-    # code = "2df06d48c27f1511"
-    # print(md5decrypt(hash, email, code))
+
+    elif len(sys.argv) == 4 and len(sys.argv[1]) == 32:
+        hash = sys.argv[1]
+        email = sys.argv[2]
+        code = sys.argv[3]
+        print(md5decrypt(hash, email, code))
+
+    elif len(sys.argv) == 5 and sys.argv[1] == "-f":
+        file = sys.argv[2]
+        email = sys.argv[3]
+        code = sys.argv[4]
+        with open(file, "r") as f:
+            for line in f:
+                print(md5decrypt(line.strip(), email, code))
+
+    else:
+        print("Argumentos o opciones no válidas intente usar -h")
+
 
 
