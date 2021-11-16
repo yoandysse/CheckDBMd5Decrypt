@@ -1,8 +1,6 @@
 import sys
 import requests
 
-email = ""
-code = ""
 
 def ERROR(message):
     errorCode = {
