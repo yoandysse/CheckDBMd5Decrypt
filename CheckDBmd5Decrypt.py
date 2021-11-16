@@ -45,13 +45,31 @@ if __name__ == '__main__':
         email = input("Introduce tu email: ")
         code = input("Introduce tu código: ")
         print(md5decrypt(hash, email, code))
+
     elif len(sys.argv) == 2 and sys.argv[1] == "--help" or sys.argv[1] == "-h":
         print("""
-        Uso: python main.py [hash] [email] [code]
-        Ejemplo: 
-            python main.py e10adc3949ba59abbe56e057f20f883e corre@dominio.com 123456
-        """)
+        Creado por: Yoandy Isse Oña
+        github: https://github.com/yoandysse/CheckDBMd5Decrypt
+        
+        
+        Este script permite buscar hashes en la web md5decrypt.net a través de su API.
+        Si no se introduce ningún parámetro, se pedirá al usuario que introduzca los datos.
+        
+        NOTA: Crea una cuenta en https://md5decrypt.net/ para obtener tu código.
 
+
+        Uso: python3 CheckDBmd5Decrypt.py  [[hash] | [-f FILE]] [email] [code]
+        
+        Opciones:
+         hash: hash a buscar
+         file: archivo con hashes
+         email: email de la cuenta premium
+         code: código de la cuenta premium
+        
+        Ejemplo: python3 CheckDBmd5Decrypt.py e10adc3949ba59abbe56e057f20f883e corre@dominio.com 123456
+        """)
+        
+        
     # print(len(sys.argv))
     # hash = sys.argv[1]
     # email = sys.argv[2]
