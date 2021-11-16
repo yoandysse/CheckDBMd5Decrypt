@@ -13,5 +13,15 @@ NOTA: Crea una cuenta en https://md5decrypt.net/ para obtener tu código.
          file: archivo con hashes
          email: email de la cuenta premium
          code: código de la cuenta premium
-        
-        Ejemplo: python3 CheckDBmd5Decrypt.py e10adc3949ba59abbe56e057f20f883e corre@dominio.com 123456
+
+### Requerimientos de Instalación
+    pip3 install -r requirements.txt
+
+### Ejemplo de uso
+Buscar Hash Simple:
+
+    python3 CheckDBmd5Decrypt.py e10adc3949ba59abbe56e057f20f883e corre@dominio.com 123456
+
+Buscar Hashes desde un archivo:
+    
+    python3 CheckDBmd5Decrypt.py -f hashes.txt corre@dominio.com 123456
