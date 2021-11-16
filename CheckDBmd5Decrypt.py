@@ -1,7 +1,5 @@
-# This is a sample Python script.
-
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import sys
+import requests
 
 email = ""
 code = ""
@@ -23,7 +21,6 @@ def ERROR(message):
 
 
 def md5decrypt(hash, email, code):
-    import requests
 
     url = "https://md5decrypt.net/en/Api/api.php"
     data = {"hash": hash, "hash_type": "md5", "email": email, "code": code}
@@ -35,16 +32,35 @@ def md5decrypt(hash, email, code):
         elif response.text == "":
             return "Hash no encontrada"
         else:
-            return response.text
+            return "Hash encontrada: {}:{} ".format(hash, response.text)
 
 
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    hash = "835ac0b7b5436c89b9813729148632e7"
-    email = "cuentasdetodo0101@yopmail.com"
-    code = "2df06d48c27f1511"
-    print(md5decrypt(hash, email, code))
+
+    if len(sys.argv) == 1:
+        hash = input("Introduce el hash: ")
+        email = input("Introduce tu email: ")
+        code = input("Introduce tu código: ")
+        print(md5decrypt(hash, email, code))
+    elif len(sys.argv) == 2 and sys.argv[1] == "--help" or sys.argv[1] == "-h":
+        print("""
+        Uso: python main.py [hash] [email] [code]
+        Ejemplo: 
+            python main.py e10adc3949ba59abbe56e057f20f883e corre@dominio.com 123456
+        """)
+
+    # print(len(sys.argv))
+    # hash = sys.argv[1]
+    # email = sys.argv[2]
+    # code = sys.argv[3]
+    #
+    # print(sys.argv[1], sys.argv[2], sys.argv[3])
+    # hash = "835ac0b7b5436c89b9813729148632e7"
+    # email = "cuentasdetodo0101@yopmail.com"
+    # code = "2df06d48c27f1511"
+    # print(md5decrypt(hash, email, code))
 
 
